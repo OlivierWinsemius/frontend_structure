@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timer Reducer has a default state 1`] = `
+Object {
+  "startedAt": undefined,
+  "stoppedAt": undefined,
+}
+`;
