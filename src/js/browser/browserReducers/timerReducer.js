@@ -7,12 +7,17 @@ const initialTimer = {
 }
 
 export default function timerReducer(timer = initialTimer, action = {}) {
+    const onPlay  = !!timer.startedAt && !timer.stoppedAt;
+    const onPause = !!timer.startedAt && !!timer.stoppedAt;
+    const onReset = !timer.startedAt && !timer.stoppedAt;
+    
     switch(action.type) {
         case oliApp.actionTypes.TIMER_START:
             return {
                 ...timer,
-                startedAt: timer.stoppedAt ?
-                                timer.startedAt + (action.payload - timer.stoppedAt) : 
+                startedAt: onPause ?
+                                // offset timer by the duration it was on pause
+                                timer.startedAt + (action.payload - timer.stoppedAt) :
                                 timer.startedAt || action.payload,
                 stoppedAt: null
             };
@@ -20,7 +25,7 @@ export default function timerReducer(timer = initialTimer, action = {}) {
         case oliApp.actionTypes.TIMER_STOP:
             return  {
                 ...timer,
-                stoppedAt: !timer.startedAt && !timer.stoppedAt ?
+                stoppedAt: onReset ?
                                 null :
                                 timer.stoppedAt || action.payload
             };

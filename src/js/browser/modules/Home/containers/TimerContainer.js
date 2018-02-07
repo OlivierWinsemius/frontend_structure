@@ -4,7 +4,7 @@ import Timer from '../components/Timer';
 export default class TimerContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.updateTimer       = this.updateTimer.bind(this);
+        this.updateTimer = this.updateTimer.bind(this);
 
         this.state = {
             elapsedTime:  null,
@@ -28,10 +28,10 @@ export default class TimerContainer extends React.Component {
         var currentTimer = this.props.timer;
         var newTimer     = timer;
         if((newTimer.stoppedAt !== currentTimer.stoppedAt) || (newTimer.startedAt !== currentTimer.startedAt)) {
-            const isReset   =   (newTimer.startedAt === null) &&
-                                (newTimer.stoppedAt === null);
-            const isStarted =   (currentTimer.startedAt === null) ||
-                                (newTimer.startedAt > currentTimer.startedAt);
+            const isStarted = (newTimer.startedAt > currentTimer.startedAt);
+            const isReset   = (newTimer.startedAt === null) &&
+                              (newTimer.stoppedAt === null);
+
             isStarted ?
                 this.setState({timerRunning: true}, this.updateTimer) :
                 this.setState({
