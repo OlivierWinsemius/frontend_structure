@@ -7,12 +7,20 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
 
-        this.updateTimer = this.updateTimer.bind(this);
+        this.updateTimer       = this.updateTimer.bind(this);
+        this.onAddValueChanged = this.onAddValueChanged.bind(this);
 
         this.state = {
             elapsedTime:  null,
-            timerRunning: false
+            timerRunning: false,
+            addValue:     1
         }
+    }
+
+    onAddValueChanged(event) {
+        const numeric  = /^\d+$/;
+        const newValue = event.target.value;
+        numeric.test(newValue) && this.setState({addValue: parseInt(newValue)});
     }
 
     updateTimer(timer) {
@@ -44,6 +52,8 @@ class Home extends React.Component {
     render() {
         const { timerRunning, elapsedTime }                  = this.state;
         const { startTimer, stopTimer, resetTimer }          = this.props;
+        
+        const { addValue }                                   = this.state;
         const { increaseCounter, decreaseCounter, counter }  = this.props;
 
         return (
@@ -58,8 +68,10 @@ class Home extends React.Component {
 
                 <Counter
                     value      = {counter}
-                    onAdd      = {() => increaseCounter()}
-                    onSubtract = {() => decreaseCounter()}
+                    addValue   = {addValue}
+                    onChange   = {this.onAddValueChanged}
+                    onAdd      = {() => increaseCounter(addValue)}
+                    onSubtract = {() => decreaseCounter(addValue)}
                 />
             </div>
         )
