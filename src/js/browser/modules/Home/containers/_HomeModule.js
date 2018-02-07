@@ -1,38 +1,46 @@
 import { connect } from 'react-redux';
 import React       from 'react';
 
-function getElapsedTime(startTime, stopTime = new Date().getTime()) {
-    return startTime ? ((stopTime - startTime) / 600).toFixed(2) : (0).toFixed(2);
-}
-
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.updateTimer = this.updateTimer.bind(this);
         this.state = {
-            elapsedTime: 0
+            elapsedTime:  '00.00',
+            timerRunning: false
         }
     }
 
-    componentDidMount() {
-        this.updateTimer()
-    }
+    updateTimer(timer) {
+        timer = timer || this.props.timer;
+        const newTime     = oliApp.utils.time.getTimeDiff(timer.startedAt || 0, timer.stoppedAt);
+        const elapsedTime = oliApp.utils.time.getTimeString(newTime);
 
-    updateTimer() {
-        const timer = this.props.timer;
-        const elapsedTime = getElapsedTime(timer.startedAt, timer.stoppedAt);
         this.setState({
             elapsedTime
+        }, () => {
+            this.state.timerRunning && requestAnimationFrame(() => this.updateTimer())
         });
-        requestAnimationFrame(this.updateTimer);
+    }
+
+    componentWillReceiveProps({ timer }) {
+        var currentTimer = this.props.timer;
+        var newTimer     = timer;
+        if((newTimer.stoppedAt !== currentTimer.stoppedAt) || (newTimer.startedAt !== currentTimer.startedAt)) {
+            console.log('ypodsfa')
+            currentTimer.startedAt === undefined || newTimer.startedAt > currentTimer.startedAt ?
+                this.setState({timerRunning: true}, this.updateTimer) :
+                this.setState({timerRunning: false});
+            newTimer.startedAt === undefined && newTimer.stoppedAt === undefined && this.updateTimer(newTimer);
+        }
     }
 
     render() {
         return (
             <div>
-                <button onClick={this.props.startTimer}>START</button>
-                <button onClick={this.props.stopTimer}>STOP</button>
-                <button onClick={this.props.resetTimer}>RESET</button>
+                <button disabled={this.state.timerRunning} onClick={this.props.startTimer}>START</button>
+                <button disabled={!this.state.timerRunning} onClick={this.props.stopTimer}>STOP</button>
+                <button disabled={this.state.elapsedTime === '00.00'} onClick={this.props.resetTimer}>RESET</button>
                 <h2>timer: {this.state.elapsedTime}</h2>
                 
                 <button onClick={() => this.props.increaseCounter()}>+</button>

@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunk    from 'redux-thunk';
 import reducers from '../browserReducers/_reducersCombiner';
+import middleWare from './middleware';
 
-module.exports = createStore(reducers, applyMiddleware(thunk));
+module.exports = createStore(reducers, applyMiddleware(middleWare));
