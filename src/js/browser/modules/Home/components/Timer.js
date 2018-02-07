@@ -2,7 +2,8 @@ import React from 'react';
 
 export default class Timer extends React.Component {
     render() {
-        const { running, value, onStop, onStart, onReset } = this.props;
+        const { running, value }            = this.props;
+        const {  onStop, onStart, onReset } = this.props;
 
         return (
             <div>

@@ -14,14 +14,13 @@ export default class TimerContainer extends React.Component {
     }
 
     updateTimer() {
+        if(!this.state.timerRunning) { return; }
         const timer       = this.props.timer;
         const newTime     = oliApp.utils.time.getTimeDiff(timer.startedAt, timer.stoppedAt);
         const elapsedTime = oliApp.utils.time.getTimeString(newTime);
-        const running     = this.state.timerRunning;
-
         this.setState({
-            elapsedTime: running ? elapsedTime : this.state.elapsedTime
-        }, () => running && requestAnimationFrame(this.updateTimer));
+            elapsedTime
+        }, () => requestAnimationFrame(this.updateTimer));
     }
 
     componentWillReceiveProps({ timer }) {
@@ -49,6 +48,7 @@ export default class TimerContainer extends React.Component {
             <Timer 
                 running = {timerRunning}
                 value   = {elapsedTime}
+
                 onStart = {onStart}
                 onStop  = {onStop}
                 onReset = {onReset}

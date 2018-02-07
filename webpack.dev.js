@@ -24,7 +24,7 @@ module.exports = merge(common, {
     devtool: 'eval-source-map',
 
     devServer: {
-        contentBase:      './dist',
+        contentBase:      path.resolve(__dirname, 'dist', 'dev'),
         hot:              true,
         watchContentBase: true
     },

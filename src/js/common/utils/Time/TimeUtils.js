@@ -1,3 +1,5 @@
+// TODO: Find a better way to implement time values
+
 function getParsedNumber(n) {
     return n === 0 ? false : n < 10 ? '0' + n : n;
 }
