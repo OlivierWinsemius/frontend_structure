@@ -9,9 +9,9 @@ function getParsedNumber(n) {
     return n === 0 ? false : n < 10 ? '0' + n : n;
 }
 export function getTimeString(date) {
-    let hours   = getParsedNumber(date.getHours());
-    let minutes = getParsedNumber(date.getMinutes());
-    let seconds = getParsedNumber(date.getSeconds()) || '00';
+    const hours   = getParsedNumber(date.getHours());
+    const minutes = getParsedNumber(date.getMinutes());
+    const seconds = getParsedNumber(date.getSeconds()) || '00';
     let millis  = getParsedNumber(date.getMilliseconds()) || '00';
     millis = millis.toString().substring(0, 2);
 

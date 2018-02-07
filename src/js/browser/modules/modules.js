@@ -1,3 +1,3 @@
-import Home from './Home/containers/_HomeModule';
+import Home from './Home/containers/_HomeContainer';
 
 export { Home };
