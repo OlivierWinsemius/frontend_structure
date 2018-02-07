@@ -1,13 +1,15 @@
-export function getTimeDiff(start, end = new Date().getTime()) {
+function getParsedNumber(n) {
+    return n === 0 ? false : n < 10 ? '0' + n : n;
+}
+
+export function getTimeDiff(start, end) {
+    end = end || new Date().getTime();
     const timeDiff = start ? end - start : 0;
     const time = new Date(0, 0);
     time.setMilliseconds(timeDiff);
     return time;
 }
 
-function getParsedNumber(n) {
-    return n === 0 ? false : n < 10 ? '0' + n : n;
-}
 export function getTimeString(date) {
     const hours   = getParsedNumber(date.getHours());
     const minutes = getParsedNumber(date.getMinutes());
@@ -21,5 +23,4 @@ export function getTimeString(date) {
         (seconds + '.') +
         (millis)
     );
-
 }

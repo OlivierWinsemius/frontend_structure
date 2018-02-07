@@ -2,7 +2,7 @@
 
 exports[`Timer Reducer has a default state 1`] = `
 Object {
-  "startedAt": undefined,
-  "stoppedAt": undefined,
+  "startedAt": null,
+  "stoppedAt": null,
 }
 `;

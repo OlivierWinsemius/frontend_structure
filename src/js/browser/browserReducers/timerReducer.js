@@ -2,8 +2,8 @@ require('../../common/utils/oliApp');
 require('../browserActions/actionTypes');
 
 const initialTimer = {
-    startedAt: undefined,
-    stoppedAt: undefined
+    startedAt: null,
+    stoppedAt: null
 }
 
 export default function timerReducer(timer = initialTimer, action = {}) {
@@ -14,22 +14,22 @@ export default function timerReducer(timer = initialTimer, action = {}) {
                 startedAt: timer.stoppedAt ?
                                 timer.startedAt + (action.payload - timer.stoppedAt) : 
                                 timer.startedAt || action.payload,
-                stoppedAt: undefined
+                stoppedAt: null
             };
 
         case oliApp.actionTypes.TIMER_STOP:
             return  {
                 ...timer,
                 stoppedAt: !timer.startedAt && !timer.stoppedAt ?
-                                undefined :
+                                null :
                                 timer.stoppedAt || action.payload
             };
 
         case oliApp.actionTypes.TIMER_RESET:
             return  {
                 ...timer,
-                startedAt: undefined,
-                stoppedAt: undefined
+                startedAt: null,
+                stoppedAt: null
             };
 
         default:

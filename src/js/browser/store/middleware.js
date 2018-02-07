@@ -1,7 +1,11 @@
 import thunk from 'redux-thunk';
-import Loger from 'redux-logger';
+import { createLogger } from 'redux-logger';
+
+const Logger = createLogger({
+    collapsed: true
+})
 
 export default (
     thunk,
-    Loger
+    Logger
 )
