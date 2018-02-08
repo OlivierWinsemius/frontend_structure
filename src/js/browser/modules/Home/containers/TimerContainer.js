@@ -1,7 +1,9 @@
-import React from 'react';
+import React     from 'react';
+import PropTypes from 'prop-types'
+
 import Timer from '../components/Timer';
 
-export default class TimerContainer extends React.Component {
+class TimerContainer extends React.Component {
     constructor(props) {
         super(props);
         this.updateTimer = this.updateTimer.bind(this);
@@ -56,3 +58,12 @@ export default class TimerContainer extends React.Component {
         );
     }
 }
+
+TimerContainer.propTypes = {
+    timer:   PropTypes.object.isRequired,
+    onStart: PropTypes.func.isRequired,
+    onStop:  PropTypes.func.isRequired,
+    onReset: PropTypes.func.isRequired,
+}
+
+export default TimerContainer;
