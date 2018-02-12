@@ -6,7 +6,7 @@ export default class Timer extends React.Component {
         const {  onStop, onStart, onReset } = this.props;
 
         return (
-            <div>
+            <div className="timer">
                 <button 
                     disabled = {running}
                     onClick = {onStart}>

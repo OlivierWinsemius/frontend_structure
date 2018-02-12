@@ -6,7 +6,7 @@ export default class Timer extends React.Component {
         const { onAdd, onSubtract, onChange } = this.props;
 
         return (
-            <div>
+            <div className = "counter">
                 <button onClick = {onSubtract}>-</button>
                 <button onClick = {onAdd}>+</button>
                 <input

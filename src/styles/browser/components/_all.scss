@@ -1,0 +1,6 @@
+@import './general/_all.scss';
+
+.Home {
+    @import './Home/_timer.scss';
+    @import './Home/_counter.scss';
+}

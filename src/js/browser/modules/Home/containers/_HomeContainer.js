@@ -9,7 +9,7 @@ class HomeContainer extends React.Component {
         const { increaseCounter, decreaseCounter, counter } = this.props;
 
         return (
-            <div>
+            <div className = "Home">
                 <TimerContainer 
                     timer   = {timer}
                     onStart = {startTimer}
