@@ -1,11 +1,11 @@
-import React   from 'react';
-import Counter from '../components/Counter';
+import React     from 'react';
+import PropTypes from 'prop-types';
+import Counter   from '../components/Counter';
 
-export default class TimerContainer extends React.Component {
+class CounterContainer extends React.Component {
     constructor(props) {
         super(props);
         this.onAddValueChanged = this.onAddValueChanged.bind(this);
-
         this.state = { inputValue: 1 }
     }
 
@@ -16,7 +16,7 @@ export default class TimerContainer extends React.Component {
     }
 
     render() {
-        const { inputValue }                   = this.state;
+        const { inputValue }                 = this.state;
         const { counter, onAdd, onSubtract } = this.props;
 
         return (  
@@ -31,3 +31,11 @@ export default class TimerContainer extends React.Component {
         );
     }
 }
+
+CounterContainer.propTypes = {
+    counter:    PropTypes.number.isRequired,
+    onAdd:      PropTypes.func.isRequired,
+    onSubtract: PropTypes.func.isRequired
+};
+
+export default CounterContainer;
