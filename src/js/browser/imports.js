@@ -1,7 +1,7 @@
 // Styles
 require('../../styles/browser/main.scss');
 
-// Global namespaces
+// Globals
 require('../common/utils/oliApp');
 require('./browserActions/actionTypes');
 require('./browserActions/actionsCombiner');

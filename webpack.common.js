@@ -8,7 +8,8 @@ module.exports = {
     },
 
     output: {
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
+        chunkFilename: '[name].bundle.js'
     },
 
     module: {
@@ -27,6 +28,6 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html')
-        }),
+        })
     ]
 };
